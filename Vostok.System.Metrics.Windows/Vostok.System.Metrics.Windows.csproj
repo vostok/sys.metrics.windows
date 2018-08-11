@@ -20,15 +20,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Title>TODO</Title>
-    <Description>TODO</Description>
+    <Title>Vostok system metrics library for Windows</Title>
+    <Description>Provides system metrics on Windows platform</Description>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageProjectUrl>TODO</PackageProjectUrl>
-    <PackageLicenseUrl>TODO</PackageLicenseUrl>
-    <PackageTags>vostok</PackageTags>
-    <RepositoryUrl>TODO</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/vostok/system.metrics.windows</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/vostok/system.metrics.windows/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>vostok vostok.system</PackageTags>
+    <RepositoryUrl>https://github.com/vostok/system.metrics.windows</RepositoryUrl>
   </PropertyGroup>
   
 </Project>
