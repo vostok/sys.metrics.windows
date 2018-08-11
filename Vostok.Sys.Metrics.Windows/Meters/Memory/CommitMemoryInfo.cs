@@ -7,7 +7,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
         public long CommittedBytes { get; internal set; }
         public long LimitBytes { get; internal set; }
 
-        public double UsageBytes => CommittedBytes / (double) LimitBytes;
+        public double UsageFraction => CommittedBytes / (double) LimitBytes;
         
         public override string ToString()
         {
