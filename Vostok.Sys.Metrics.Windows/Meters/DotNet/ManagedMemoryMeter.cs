@@ -92,7 +92,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
                 .WithCounter(Category.ClrMemory, "Gen 2 heap size", (c, x) => c.Result.Heap.Gen2SizeBytes = (long) x)
                 .WithCounter(Category.ClrMemory, "Large Object Heap size", (c, x) => c.Result.Heap.LargeObjectHeapSizeBytes = (long) x)
                 .WithCounter(Category.ClrMemory, "# Bytes in all Heaps", (c, x) => c.Result.Heap.TotalSizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocationRateBytesPerSecond = (long) x);
+                .WithCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocatedBytesPerSecond = (long) x);
             
             if (pid != ProcessUtility.CurrentProcessId)
                 builder = builder

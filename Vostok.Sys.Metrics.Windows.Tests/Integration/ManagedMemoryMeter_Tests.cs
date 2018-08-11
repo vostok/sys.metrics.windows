@@ -29,7 +29,7 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
                 Thread.Sleep(seconds.Seconds());
                 testProcess.MakeGC(0);
                 var result = meter.GetManagedMemoryInfo();
-                (result.Heap.AllocationRateBytesPerSecond - rate).Should().BeLessThan(rate / 10);
+                (result.Heap.AllocatedBytesPerSecond - rate).Should().BeLessThan(rate / 10);
             }
         }
 

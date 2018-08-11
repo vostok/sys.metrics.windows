@@ -27,13 +27,13 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
         /// <summary>
         /// The rate of allocation on heaps per second
         /// </summary>
-        public long AllocationRateBytesPerSecond;
+        public long AllocatedBytesPerSecond;
 
         public override string ToString()
         {
-            return AllocationRateBytesPerSecond == 0
+            return AllocatedBytesPerSecond == 0
                 ? $"Gen1: {new DataSize(Gen1SizeBytes)}, Gen2: {new DataSize(Gen2SizeBytes)}, LOH: {new DataSize(LargeObjectHeapSizeBytes)}"
-                : $"Gen1: {new DataSize(Gen1SizeBytes)}, Gen2: {new DataSize(Gen2SizeBytes)}, LOH: {new DataSize(LargeObjectHeapSizeBytes)}, Allocation Rate: {new DataSize(AllocationRateBytesPerSecond)}/s";
+                : $"Gen1: {new DataSize(Gen1SizeBytes)}, Gen2: {new DataSize(Gen2SizeBytes)}, LOH: {new DataSize(LargeObjectHeapSizeBytes)}, Allocation Rate: {new DataSize(AllocatedBytesPerSecond)}/s";
         }
     }
 }
