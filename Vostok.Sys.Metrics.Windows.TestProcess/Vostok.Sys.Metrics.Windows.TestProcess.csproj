@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net471</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Vostok.Sys.Metrics.Windows\Vostok.Sys.Metrics.Windows.csproj" />
+    </ItemGroup>
+
+</Project>

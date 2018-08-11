@@ -1,17 +1,17 @@
 notests *default:
   build:
-    target: Vostok.System.Metrics.Windows.sln
+    target: Vostok.Sys.Metrics.Windows.sln
     configuration: NoTests
     tool:
       name: dotnet
 
   install:
-    - Vostok.System.Metrics.Windows/bin/Release/netstandard2.0/Vostok.System.Metrics.Windows.dll
+    - Vostok.Sys.Metrics.Windows/bin/Release/netstandard2.0/Vostok.Sys.Metrics.Windows.dll
 
   deps:
     - vostok.devtools
 
 full-build > notests:
   build:
-    target: Vostok.System.Metrics.Windows.sln
+    target: Vostok.Sys.Metrics.Windows.sln
     configuration: Release
