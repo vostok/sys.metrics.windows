@@ -2,9 +2,9 @@
   <Import Project="..\..\vostok.devtools\library-common-props\Test-Project.props" />
   <Import Project="..\..\vostok.devtools\git-commit-to-assembly-title\Vostok.Tools.GitCommit2AssemblyTitle.props" />
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net471</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netcoreapp2.1</TargetFrameworks>
     <LangVersion>7.2</LangVersion>
+    <TargetFramework>net471</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.4.1" />
@@ -14,6 +14,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vostok.System.Metrics.Windows.TestProcess\Vostok.System.Metrics.Windows.TestProcess.csproj" />
     <ProjectReference Include="..\Vostok.System.Metrics.Windows\Vostok.System.Metrics.Windows.csproj" />
   </ItemGroup>
   <ItemGroup>

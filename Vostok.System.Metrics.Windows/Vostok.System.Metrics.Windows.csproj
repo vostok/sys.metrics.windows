@@ -30,5 +30,13 @@
     <PackageTags>vostok vostok.system</PackageTags>
     <RepositoryUrl>https://github.com/vostok/system.metrics.windows</RepositoryUrl>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
   
 </Project>
