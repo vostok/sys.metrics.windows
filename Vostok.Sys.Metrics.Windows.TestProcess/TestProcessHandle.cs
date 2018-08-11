@@ -55,16 +55,16 @@ namespace Vostok.Sys.Metrics.Windows.TestProcess
             WaitForCompletion(command);
         }
 
-        public void EatMemory(DataSize size)
+        public void EatMemory(long sizeBytes)
         {
-            var command = $"eat_mem {size.Bytes}";
+            var command = $"eat_mem {sizeBytes}";
             Process.StandardInput.WriteLine(command);
             WaitForCompletion(command);
         }
 
-        public void EatPrivateMemory(DataSize size)
+        public void EatPrivateMemory(long sizeBytes)
         {
-            var command = $"eat_private_mem {size.Bytes}";
+            var command = $"eat_private_mem {sizeBytes}";
             Process.StandardInput.WriteLine(command);
             WaitForCompletion(command);
         }

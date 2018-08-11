@@ -2,12 +2,11 @@
 using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Extensions;
+using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.Meters.CPU;
 using Vostok.Sys.Metrics.Windows.TestProcess;
-using Vostok.Sys.Metrics.Windows.TestsCore;
-using NUnit.Framework;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class ProcessCPUUsageMeter_Tests

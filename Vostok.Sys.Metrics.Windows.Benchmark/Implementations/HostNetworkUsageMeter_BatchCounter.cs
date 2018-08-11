@@ -69,11 +69,11 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
             return counterFactory
                 .Create<InterfaceUsageMetrics>()
                 .WithCounter("Network Interface", "Bytes Received/sec",
-                    (c, v) => c.Result.ReceivedPerSecond = DataSize.FromBytes(v))
+                    (c, v) => c.Result.ReceivedPerSecondBytes = (long) v)
                 .WithCounter("Network Interface", "Bytes Sent/sec",
-                    (c, v) => c.Result.SentPerSecond = DataSize.FromBytes(v))
+                    (c, v) => c.Result.SentPerSecondBytes = (long) v)
                 .WithCounter("Network Interface", "Current Bandwidth",
-                    (c, v) => c.Result.SentPerSecond = DataSize.FromBytes(v))
+                    (c, v) => c.Result.SentPerSecondBytes = (long) v)
                 .Build(networkInterface);
         }
 

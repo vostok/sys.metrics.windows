@@ -12,19 +12,19 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
         /// <summary>
         /// Bytes received / second
         /// </summary>
-        public DataSize ReceivedPerSecond;
+        public long ReceivedPerSecondBytes;
         
         /// <summary>
         /// Bytes sent / second
         /// </summary>
-        public DataSize SentPerSecond;
+        public long SentPerSecondBytes;
 
         /// <summary>
         /// Interface bandwidth
         /// </summary>
-        public DataSize Bandwidth;
+        public long BandwidthBytes;
 
         public override string ToString()
-            => $"{Interface} - In: {ReceivedPerSecond}/s, Out: {SentPerSecond}/s, Bandwidth: {Bandwidth}/s ({Bandwidth.ToStringAsDecimalBits()}/s)";
+            => $"{Interface} - In: {new DataSize(ReceivedPerSecondBytes)}/s, Out: {new DataSize(SentPerSecondBytes)}/s, Bandwidth: {new DataSize(BandwidthBytes)}/s ({new DataSize(BandwidthBytes).ToStringAsDecimalBits()}/s)";
     }
 }

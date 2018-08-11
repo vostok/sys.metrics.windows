@@ -4,14 +4,14 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct CommitMemoryInfo
     {
-        public DataSize Committed;
-        public DataSize Limit;
+        public long CommittedBytes;
+        public long LimitBytes;
 
-        public double Usage => Committed / Limit;
+        public double UsageBytes => CommittedBytes / (double) LimitBytes;
         
         public override string ToString()
         {
-            return $"Committed = {Committed}/{Limit}";
+            return $"Committed = {new DataSize(CommittedBytes)}/{new DataSize(LimitBytes)}";
         }
     }
 }

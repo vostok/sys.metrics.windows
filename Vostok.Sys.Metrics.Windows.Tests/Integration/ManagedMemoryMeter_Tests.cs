@@ -2,13 +2,13 @@
 using System.Threading;
 using FluentAssertions;
 using FluentAssertions.Extensions;
+using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.DotNet;
 using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 using Vostok.Sys.Metrics.Windows.TestProcess;
-using NUnit.Framework;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     public class ManagedMemoryMeter_Tests
     {
@@ -19,17 +19,17 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
         public void AllocationRate(int mb, int seconds)
         {
             var size = DataSize.FromMegabytes(mb);
-            var rate = size / seconds;
+            var rate = (size / seconds).Bytes;
             
             using (var testProcess = new TestProcessHandle())
             using (var meter = new ManagedMemoryMeter(testProcess.Process.Id))
             {
                 meter.GetManagedMemoryInfo();
-                testProcess.EatPrivateMemory(size);
+                testProcess.EatPrivateMemory(size.Bytes);
                 Thread.Sleep(seconds.Seconds());
                 testProcess.MakeGC(0);
                 var result = meter.GetManagedMemoryInfo();
-                (result.Heap.AllocationRate - rate).Bytes.Should().BeLessThan(rate.Bytes / 10);
+                (result.Heap.AllocationRateBytesPerSecond - rate).Should().BeLessThan(rate / 10);
             }
         }
 
@@ -40,11 +40,11 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             using (var meter = new ManagedMemoryMeter(testProcess.Process.Id))
             {
                 var size = DataSize.FromKilobytes(100);
-                var lohSizeBefore = meter.GetManagedMemoryInfo().Heap.LargeObjectHeapSize;
-                testProcess.EatPrivateMemory(size);
+                var lohSizeBefore = meter.GetManagedMemoryInfo().Heap.LargeObjectHeapSizeBytes;
+                testProcess.EatPrivateMemory(size.Bytes);
                 testProcess.MakeGC(0);
-                var lohSizeAfter = meter.GetManagedMemoryInfo().Heap.LargeObjectHeapSize;
-                (lohSizeAfter - lohSizeBefore).Bytes.Should().BeGreaterOrEqualTo(size.Bytes);
+                var lohSizeAfter = meter.GetManagedMemoryInfo().Heap.LargeObjectHeapSizeBytes;
+                (lohSizeAfter - lohSizeBefore).Should().BeGreaterOrEqualTo(size.Bytes);
             }
         }
 
@@ -56,11 +56,11 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             {
                 var size = DataSize.FromKilobytes(10);
                 testProcess.MakeGC(2);
-                var gen1SizeBefore = meter.GetManagedMemoryInfo().Heap.Gen1Size;
-                testProcess.EatPrivateMemory(size);
+                var gen1SizeBefore = meter.GetManagedMemoryInfo().Heap.Gen1SizeBytes;
+                testProcess.EatPrivateMemory(size.Bytes);
                 testProcess.MakeGC(0);
-                var gen1SizeAfter = meter.GetManagedMemoryInfo().Heap.Gen1Size;
-                (gen1SizeAfter - gen1SizeBefore).Bytes.Should().BeGreaterOrEqualTo(size.Bytes);
+                var gen1SizeAfter = meter.GetManagedMemoryInfo().Heap.Gen1SizeBytes;
+                (gen1SizeAfter - gen1SizeBefore).Should().BeGreaterOrEqualTo(size.Bytes);
             }
         }
         
@@ -72,12 +72,12 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             {
                 var size = DataSize.FromKilobytes(10);
                 testProcess.MakeGC(2);
-                var gen2SizeBefore = meter.GetManagedMemoryInfo().Heap.Gen2Size;
-                testProcess.EatPrivateMemory(size);
+                var gen2SizeBefore = meter.GetManagedMemoryInfo().Heap.Gen2SizeBytes;
+                testProcess.EatPrivateMemory(size.Bytes);
                 testProcess.MakeGC(0);
                 testProcess.MakeGC(1);
-                var gen2SizeAfter = meter.GetManagedMemoryInfo().Heap.Gen2Size;
-                (gen2SizeAfter - gen2SizeBefore).Bytes.Should().BeGreaterOrEqualTo(size.Bytes);
+                var gen2SizeAfter = meter.GetManagedMemoryInfo().Heap.Gen2SizeBytes;
+                (gen2SizeAfter - gen2SizeBefore).Should().BeGreaterOrEqualTo(size.Bytes);
             }
         }
         

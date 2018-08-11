@@ -53,8 +53,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
             return new ProcessMemoryInfo
             {
                 // use PrivateUsage instead of PagefileUsage because PagefileUsage is always zero on Windows 7, Windows Server 2008 R2 and earlier systems
-                Private = DataSize.FromBytes((long) counters.PrivateUsage),
-                WorkingSet = DataSize.FromBytes((long) counters.WorkingSetSize),
+                PrivateBytes = (long) counters.PrivateUsage,
+                WorkingSetBytes = (long) counters.WorkingSetSize,
             };
         }
 

@@ -7,33 +7,33 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
         /// <summary>
         /// The maximum data size that can be allocated in generation 0
         /// </summary>
-        public DataSize Gen0Size;
+        public long Gen0SizeBytes;
         /// <summary>
         /// The current data size allocated in generation 1
         /// </summary>
-        public DataSize Gen1Size;
+        public long Gen1SizeBytes;
         /// <summary>
         /// The current data size allocated in generation 2
         /// </summary>
-        public DataSize Gen2Size;
+        public long Gen2SizeBytes;
         /// <summary>
         /// Current size of the Large Object Heap
         /// </summary>
-        public DataSize LargeObjectHeapSize;
+        public long LargeObjectHeapSizeBytes;
         /// <summary>
-        /// The curent data size allocated on the GC heaps
+        /// The current data size allocated on the GC heaps
         /// </summary>
-        public DataSize TotalSize;
+        public long TotalSizeBytes;
         /// <summary>
         /// The rate of allocation on heaps per second
         /// </summary>
-        public DataSize AllocationRate;
+        public long AllocationRateBytesPerSecond;
 
         public override string ToString()
         {
-            return AllocationRate.Bytes == 0
-                ? $"Gen1: {Gen1Size}, Gen2: {Gen2Size}, LOH: {LargeObjectHeapSize}"
-                : $"Gen1: {Gen1Size}, Gen2: {Gen2Size}, LOH: {LargeObjectHeapSize}, Allocation Rate: {AllocationRate}/s";
+            return AllocationRateBytesPerSecond == 0
+                ? $"Gen1: {new DataSize(Gen1SizeBytes)}, Gen2: {new DataSize(Gen2SizeBytes)}, LOH: {new DataSize(LargeObjectHeapSizeBytes)}"
+                : $"Gen1: {new DataSize(Gen1SizeBytes)}, Gen2: {new DataSize(Gen2SizeBytes)}, LOH: {new DataSize(LargeObjectHeapSizeBytes)}, Allocation Rate: {new DataSize(AllocationRateBytesPerSecond)}/s";
         }
     }
 }

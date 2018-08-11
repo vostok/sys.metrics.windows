@@ -33,8 +33,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
             var memoryStatusEx = GetMemoryStatusEx();
             return new HostMemoryInfo
             {
-                TotalPhysicalMemory = DataSize.FromBytes((long) memoryStatusEx.ullTotalPhys),
-                AvailablePhysicalMemory = DataSize.FromBytes((long) memoryStatusEx.ullAvailPhys),
+                TotalPhysicalMemoryBytes = (long) memoryStatusEx.ullTotalPhys,
+                AvailablePhysicalMemoryBytes = (long) memoryStatusEx.ullAvailPhys,
             };
         }
 

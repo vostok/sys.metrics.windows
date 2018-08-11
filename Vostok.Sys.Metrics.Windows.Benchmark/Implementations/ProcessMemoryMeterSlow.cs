@@ -36,8 +36,8 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
 
             return new ProcessMemoryInfo
             {
-                Private = DataSize.FromBytes(process.PrivateMemorySize64),
-                WorkingSet = DataSize.FromBytes(process.WorkingSet64)
+                PrivateBytes = process.PrivateMemorySize64,
+                WorkingSetBytes = process.WorkingSet64
             };
         }
 

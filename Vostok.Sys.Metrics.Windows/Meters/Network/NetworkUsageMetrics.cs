@@ -11,8 +11,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
 
         public InterfaceUsageMetrics[] InterfaceMetrics { get; }
 
-        public DataSize ReceivedPerSecond => DataSize.FromBytes(InterfaceMetrics.Sum(x => x.ReceivedPerSecond.Bytes));
-        public DataSize SentPerSecond => DataSize.FromBytes(InterfaceMetrics.Sum(x => x.SentPerSecond.Bytes));
+        public long ReceivedBytesPerSecond => InterfaceMetrics.Sum(x => x.ReceivedPerSecondBytes);
+        public long SentBytesPerSecond => InterfaceMetrics.Sum(x => x.SentPerSecondBytes);
 
         public override string ToString()
             => string.Join(Environment.NewLine, InterfaceMetrics);

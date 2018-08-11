@@ -4,14 +4,14 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct StandbyCacheMemoryInfo
     {        
-        public DataSize NormalPriority;
-        public DataSize Reserve;
+        public long NormalPriorityBytes;
+        public long ReserveBytes;
 
-        public DataSize Total => NormalPriority + Reserve;
+        public long TotalBytes => NormalPriorityBytes + ReserveBytes;
         
         public override string ToString()
         {
-            return $"Standby: NormalPriority = {NormalPriority}; Reserve = {Reserve}";
+            return $"Standby: NormalPriority = {new DataSize(NormalPriorityBytes)}; Reserve = {new DataSize(ReserveBytes)}";
         }
     }
 }

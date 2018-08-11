@@ -1,12 +1,11 @@
 ﻿using System;
 using FluentAssertions;
 using FluentAssertions.Extensions;
+using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.Meters.DotNet;
 using Vostok.Sys.Metrics.Windows.TestProcess;
-using Vostok.Sys.Metrics.Windows.TestsCore;
-using NUnit.Framework;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class DotNetThreadsMeter_Tests

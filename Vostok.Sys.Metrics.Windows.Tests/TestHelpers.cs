@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Vostok.Sys.Metrics.Windows.TestsCore
+namespace Vostok.Sys.Metrics.Windows.Tests
 {
     public static class TestHelpers
     {

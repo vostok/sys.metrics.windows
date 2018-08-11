@@ -1,10 +1,9 @@
 ﻿using System;
 using FluentAssertions.Extensions;
-using Vostok.Sys.Metrics.Windows.Meters.Disk;
-using Vostok.Sys.Metrics.Windows.TestsCore;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Meters.Disk;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class DiskSpaceMeter_Tests
@@ -18,7 +17,7 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             using (var meter = new DiskSpaceMeter(letter))
             {
                 var freeSpaceResults = TestHelpers.GetMeterValues(
-                    () => meter.GetFreeSpace(),
+                    () => meter.GetFreeSpaceBytes(),
                     100.Milliseconds(), 5);
                 Console.WriteLine(string.Join(", ", freeSpaceResults));
             }
@@ -33,7 +32,7 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             using (var meter = new DiskSpaceMeter(letter))
             {
                 var totalSpaceResults = TestHelpers.GetMeterValues(
-                    () => meter.GetTotalSpace(),
+                    () => meter.GetTotalSpaceBytes(),
                     100.Milliseconds(), 5);
                 Console.WriteLine(string.Join(", ", totalSpaceResults));
             }

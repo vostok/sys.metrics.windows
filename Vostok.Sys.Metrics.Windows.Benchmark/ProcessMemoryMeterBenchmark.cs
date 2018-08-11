@@ -25,7 +25,7 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark
             if (testProcess != null)
                 return testProcess;
             var p = new TestProcessHandle();
-            p.EatMemory(DataSize.FromMegabytes(10));
+            p.EatMemory(DataSize.FromMegabytes(10).Bytes);
             return p;
         }
 

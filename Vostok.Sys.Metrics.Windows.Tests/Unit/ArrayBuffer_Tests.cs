@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Helpers;
 
-namespace Vostok.Sys.Metrics.Windows.UnitTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Unit
 {
     public class ArrayBuffer_Tests
     {

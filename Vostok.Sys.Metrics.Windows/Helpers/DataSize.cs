@@ -2,7 +2,7 @@
 
 namespace Vostok.Sys.Metrics.Windows.Helpers
 {
-    public struct DataSize : IEquatable<DataSize>, IComparable<DataSize>
+    internal struct DataSize : IEquatable<DataSize>, IComparable<DataSize>
     {
         private const long Kilobyte = 1024;
 

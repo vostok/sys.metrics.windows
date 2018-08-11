@@ -1,11 +1,11 @@
 ﻿using System;
 using FluentAssertions;
 using FluentAssertions.Extensions;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using NSubstitute;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Helpers;
 
-namespace Vostok.Sys.Metrics.Windows.UnitTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Unit
 {
 
     [TestFixture]

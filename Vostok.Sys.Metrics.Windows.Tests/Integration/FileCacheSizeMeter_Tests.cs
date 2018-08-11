@@ -1,10 +1,9 @@
 ﻿using System;
 using FluentAssertions.Extensions;
-using Vostok.Sys.Metrics.Windows.Meters.Memory;
-using Vostok.Sys.Metrics.Windows.TestsCore;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Meters.Memory;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class FileCacheSizeMeter_Tests
@@ -15,7 +14,7 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
             using (var fileCacheSizeMeter = new FileCacheSizeMeter())
             {
                 var results = TestHelpers.GetMeterValues(
-                    () => fileCacheSizeMeter.GetCacheSize(),
+                    () => fileCacheSizeMeter.GetCacheSizeBytes(),
                     100.Milliseconds(), 5);
                 Console.WriteLine(string.Join(", ", results));
             }

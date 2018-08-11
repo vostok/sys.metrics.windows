@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions.Extensions;
-using Vostok.Sys.Metrics.Windows.Meters.Disk;
-using Vostok.Sys.Metrics.Windows.TestsCore;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Meters.Disk;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class LogicalDiskMeter_Tests

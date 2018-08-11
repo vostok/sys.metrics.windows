@@ -4,14 +4,14 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct KernelMemoryInfo
     {
-        public DataSize PagedPool;
-        public DataSize NonpagedPool;
+        public long PagedPoolBytes;
+        public long NonpagedPoolBytes;
 
-        public DataSize Total => PagedPool + NonpagedPool;
+        public long TotalBytes => PagedPoolBytes + NonpagedPoolBytes;
         
         public override string ToString()
         {
-            return $"PagedPool = {PagedPool}; NonPagedPool = {NonpagedPool}";
+            return $"PagedPool = {new DataSize(PagedPoolBytes)}; NonPagedPool = {new DataSize(NonpagedPoolBytes)}";
         }
     }
 }

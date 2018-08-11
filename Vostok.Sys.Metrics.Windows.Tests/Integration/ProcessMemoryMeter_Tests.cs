@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using FluentAssertions;
+using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.Memory;
 using Vostok.Sys.Metrics.Windows.TestProcess;
-using NUnit.Framework;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class ProcessMemoryMeter_Tests
@@ -21,15 +21,15 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
                 var tolerance = DataSize.FromMegabytes(2);
 
                 var before = meter.GetMemoryInfo();
-                testProcess.EatMemory(toEat);
+                testProcess.EatMemory(toEat.Bytes);
                 var after = meter.GetMemoryInfo();
 
-                Console.WriteLine($"Before: ws {before.WorkingSet} pb {before.Private}");
-                Console.WriteLine($"After: ws {after.WorkingSet} pb {after.Private}");
-                Console.WriteLine($"Diff ws {after.WorkingSet - before.WorkingSet} pb {after.Private - before.Private}");
+                Console.WriteLine($"Before: ws {before.WorkingSetBytes} pb {before.PrivateBytes}");
+                Console.WriteLine($"After: ws {after.WorkingSetBytes} pb {after.PrivateBytes}");
+                Console.WriteLine($"Diff ws {after.WorkingSetBytes - before.WorkingSetBytes} pb {after.PrivateBytes - before.PrivateBytes}");
 
-                (after.WorkingSet - before.WorkingSet).Should().BeGreaterThan(toEat - tolerance);
-                (after.Private - before.Private).Should().BeGreaterThan(toEat - tolerance);
+                (after.WorkingSetBytes - before.WorkingSetBytes).Should().BeGreaterThan((toEat - tolerance).Bytes);
+                (after.PrivateBytes - before.PrivateBytes).Should().BeGreaterThan((toEat - tolerance).Bytes);
             }
         }
         
@@ -43,15 +43,15 @@ namespace Vostok.Sys.Metrics.Windows.IntegrationTests
                 var tolerance = DataSize.FromMegabytes(2);
 
                 var before = meter.GetMemoryInfo();
-                testProcess.EatPrivateMemory(toEat);
+                testProcess.EatPrivateMemory(toEat.Bytes);
                 var after = meter.GetMemoryInfo();
 
-                Console.WriteLine($"Before: ws {before.WorkingSet} pb {before.Private}");
-                Console.WriteLine($"After: ws {after.WorkingSet} pb {after.Private}");
-                Console.WriteLine($"Diff ws {after.WorkingSet - before.WorkingSet} pb {after.Private - before.Private}");
+                Console.WriteLine($"Before: ws {before.WorkingSetBytes} pb {before.PrivateBytes}");
+                Console.WriteLine($"After: ws {after.WorkingSetBytes} pb {after.PrivateBytes}");
+                Console.WriteLine($"Diff ws {after.WorkingSetBytes - before.WorkingSetBytes} pb {after.PrivateBytes - before.PrivateBytes}");
 
-                (after.WorkingSet - before.WorkingSet).Should().BeLessThan(tolerance);
-                (after.Private - before.Private).Should().BeGreaterThan(toEat - tolerance);
+                (after.WorkingSetBytes - before.WorkingSetBytes).Should().BeLessThan(tolerance.Bytes);
+                (after.PrivateBytes - before.PrivateBytes).Should().BeGreaterThan((toEat - tolerance).Bytes);
             }
         }
         

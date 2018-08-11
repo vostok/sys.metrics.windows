@@ -17,17 +17,17 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
         /// <summary>
         /// Returns amount of total space on disk.
         /// </summary>
-        public DataSize GetTotalSpace()
+        public long GetTotalSpaceBytes()
         {
-            return DataSize.FromBytes(drive.TotalSize);
+            return drive.TotalSize;
         }
 
         /// <summary>
         /// Returns amount of free space on disk.
         /// </summary>
-        public DataSize GetFreeSpace()
+        public long GetFreeSpaceBytes()
         {
-            return DataSize.FromBytes(drive.TotalFreeSpace);
+            return drive.TotalFreeSpace;
         }
 
         public void Dispose()

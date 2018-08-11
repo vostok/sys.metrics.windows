@@ -1,8 +1,8 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.Meters.CPU;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Meters.CPU;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     [TestFixture]
     public class ProcessorInfo_Tests

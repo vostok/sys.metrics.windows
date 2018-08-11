@@ -18,9 +18,6 @@
     <ProjectReference Include="..\Vostok.Sys.Metrics.Windows\Vostok.Sys.Metrics.Windows.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Properties\AssemblyTitle.cs" />
   </ItemGroup>
 </Project>

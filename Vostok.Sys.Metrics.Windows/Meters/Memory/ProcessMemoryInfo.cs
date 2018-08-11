@@ -4,12 +4,12 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct ProcessMemoryInfo
     {
-        public DataSize Private { get; set; }
-        public DataSize WorkingSet { get; set; }
+        public long PrivateBytes { get; set; }
+        public long WorkingSetBytes { get; set; }
 
         public override string ToString()
         {
-            return $"{nameof(WorkingSet)}: {WorkingSet}, {nameof(Private)}: {Private}";
+            return $"{nameof(WorkingSetBytes)}: {new DataSize(WorkingSetBytes)}, {nameof(PrivateBytes)}: {new DataSize(PrivateBytes)}";
         }
     }
 }

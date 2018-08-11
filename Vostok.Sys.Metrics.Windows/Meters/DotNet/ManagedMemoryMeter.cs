@@ -9,26 +9,25 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
     /// <summary>
     /// Measures:
     /// <list type="bullet">
-    ///     <item>GC count by generation since process start</item>
-    ///     <item>GC count by generation since last observation</item>
-    ///     <item>Heap generation sizes</item>
-    ///     <item>Allocation rate per second</item>
+    ///     <item><description>GC count by generation since process start</description></item>
+    ///     <item><description>GC count by generation since last observation</description></item>
+    ///     <item><description>Heap generation sizes</description></item>
+    ///     <item><description>Allocation rate per second</description></item>
     /// </list>
     /// <para>
     /// Internally uses .NET CLR Memory performance counters:
     /// </para>
     /// <list type="bullet">
-    ///     <item># Gen 0 Collections</item>
-    ///     <item># Gen 1 Collections</item>
-    ///     <item># Gen 2 Collections</item>
-    ///     <item>% Time in GC</item>
-    ///     <item>Gen 0 heap size</item>
-    ///     <item>Gen 1 heap size</item>
-    ///     <item>Gen 2 heap size</item>
-    ///     <item>Large Object Heap size</item>
-    ///     <item># Bytes in all Heaps</item>
-    ///     <item>Allocated Bytes/sec</item>
-    /// 
+    ///     <item><description># Gen 0 Collections</description></item>
+    ///     <item><description># Gen 1 Collections</description></item>
+    ///     <item><description># Gen 2 Collections</description></item>
+    ///     <item><description>% Time in GC</description></item>
+    ///     <item><description>Gen 0 heap size</description></item>
+    ///     <item><description>Gen 1 heap size</description></item>
+    ///     <item><description>Gen 2 heap size</description></item>
+    ///     <item><description>Large Object Heap size</description></item>
+    ///     <item><description># Bytes in all Heaps</description></item>
+    ///     <item><description>Allocated Bytes/sec</description></item>
     /// </list>
     /// <see href="https://blogs.msdn.microsoft.com/maoni/2004/06/03/gc-performance-counters/"/>
     /// </summary>    
@@ -88,12 +87,12 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
             var builder = counterFactory
                 .Create<ManagedMemoryInfo>() // .Create<T>
                 .WithCounter(Category.ClrMemory, "% Time in GC", (c, x) => c.Result.GC.TimeInGCPercent = x)
-                .WithCounter(Category.ClrMemory, "Gen 0 heap size", (c, x) => c.Result.Heap.Gen0Size = DataSize.FromBytes(x))
-                .WithCounter(Category.ClrMemory, "Gen 1 heap size", (c, x) => c.Result.Heap.Gen1Size = DataSize.FromBytes(x))
-                .WithCounter(Category.ClrMemory, "Gen 2 heap size", (c, x) => c.Result.Heap.Gen2Size = DataSize.FromBytes(x))
-                .WithCounter(Category.ClrMemory, "Large Object Heap size", (c, x) => c.Result.Heap.LargeObjectHeapSize = DataSize.FromBytes(x))
-                .WithCounter(Category.ClrMemory, "# Bytes in all Heaps", (c, x) => c.Result.Heap.TotalSize = DataSize.FromBytes(x))
-                .WithCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocationRate = DataSize.FromBytes(x));
+                .WithCounter(Category.ClrMemory, "Gen 0 heap size", (c, x) => c.Result.Heap.Gen0SizeBytes = (long) x)
+                .WithCounter(Category.ClrMemory, "Gen 1 heap size", (c, x) => c.Result.Heap.Gen1SizeBytes = (long) x)
+                .WithCounter(Category.ClrMemory, "Gen 2 heap size", (c, x) => c.Result.Heap.Gen2SizeBytes = (long) x)
+                .WithCounter(Category.ClrMemory, "Large Object Heap size", (c, x) => c.Result.Heap.LargeObjectHeapSizeBytes = (long) x)
+                .WithCounter(Category.ClrMemory, "# Bytes in all Heaps", (c, x) => c.Result.Heap.TotalSizeBytes = (long) x)
+                .WithCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocationRateBytesPerSecond = (long) x);
             
             if (pid != ProcessUtility.CurrentProcessId)
                 builder = builder

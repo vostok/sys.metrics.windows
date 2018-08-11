@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using FluentAssertions;
-using Vostok.Sys.Metrics.Windows.Meters.Network;
 using NUnit.Framework;
+using Vostok.Sys.Metrics.Windows.Meters.Network;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     public class TcpConnectionsMeter_Tests
     {

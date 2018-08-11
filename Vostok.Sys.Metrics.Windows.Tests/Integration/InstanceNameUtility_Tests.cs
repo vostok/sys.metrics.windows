@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using FluentAssertions;
-using Vostok.Sys.Metrics.Windows.TestProcess;
 using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 using Vostok.Sys.Metrics.Windows.TestProcess;
 
-namespace Vostok.Sys.Metrics.Windows.IntegrationTests
+namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
     internal class InstanceNameUtility_Tests
     {
