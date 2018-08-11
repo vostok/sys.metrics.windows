@@ -11,7 +11,7 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
     [TestFixture]
     public class HostMemoryMeter_Tests
     {
-        [Test]
+        [Test, Explicit]
         public void Memory_usage_increases_when_process_eats_memory()
         {
             using (var testProcess = new TestProcessHandle())
