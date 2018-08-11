@@ -24,7 +24,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
         /// <summary>
         /// Measures current file cache size.
         /// </summary>
-        public long GetCacheSizeBytes()
+        public long GetFileCacheSizeBytes()
         {
             return (long) counter.Observe();
         }

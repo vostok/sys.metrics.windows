@@ -14,7 +14,7 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             using (var fileCacheSizeMeter = new FileCacheSizeMeter())
             {
                 var results = TestHelpers.GetMeterValues(
-                    () => fileCacheSizeMeter.GetCacheSizeBytes(),
+                    () => fileCacheSizeMeter.GetFileCacheSizeBytes(),
                     100.Milliseconds(), 5);
                 Console.WriteLine(string.Join(", ", results));
             }
