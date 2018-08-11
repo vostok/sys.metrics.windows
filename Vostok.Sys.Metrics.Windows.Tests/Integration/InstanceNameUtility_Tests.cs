@@ -41,10 +41,10 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             using (var testProcess3 = new TestProcessHandle())
             {
                 var cache = InstanceNameUtility.AllProcesses.ObtainInstanceNames();
-                cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess");
-                cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#1");
-                cache[testProcess2.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#2");
-                cache[testProcess3.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#3");
+                cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
+                cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#1");
+                cache[testProcess2.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#2");
+                cache[testProcess3.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#3");
             }
         }
         
@@ -58,10 +58,10 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             {
                 var cache = InstanceNameUtility.NetProcesses.ObtainInstanceNames();
 
-                cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#3");
-                cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#2");
-                cache[testProcess2.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#1");
-                cache[testProcess3.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess");
+                cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#3");
+                cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#2");
+                cache[testProcess2.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#1");
+                cache[testProcess3.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
             }
         }
         [Test]
@@ -72,8 +72,8 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             {
                 void AssertExpectedInstanceIds(Dictionary<int, string> cache)
                 {
-                    cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#1");
-                    cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess");
+                    cache[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#1");
+                    cache[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
                 }
                 
                 AssertExpectedInstanceIds(InstanceNameUtility.NetProcesses.ObtainInstanceNames());
@@ -93,12 +93,12 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             using (var testProcess1 = new TestProcessHandle())
             {
                 var cacheBefore = InstanceNameUtility.AllProcesses.ObtainInstanceNames();
-                cacheBefore[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#1");
+                cacheBefore[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#1");
                 
                 testProcess0.Dispose();
                 
                 var cacheAfter = InstanceNameUtility.AllProcesses.ObtainInstanceNames();
-                cacheAfter[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess");
+                cacheAfter[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
                 
             }
         }
@@ -110,12 +110,12 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             using (var testProcess1 = new TestProcessHandle())
             {
                 var cacheBefore = InstanceNameUtility.NetProcesses.ObtainInstanceNames();
-                cacheBefore[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess#1");
+                cacheBefore[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess#1");
                 
                 testProcess1.Dispose();
                 
                 var cacheAfter = InstanceNameUtility.NetProcesses.ObtainInstanceNames();
-                cacheAfter[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.system.metrics.windows.testprocess");
+                cacheAfter[testProcess0.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
             }
         }
         
