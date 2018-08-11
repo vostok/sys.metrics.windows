@@ -89,8 +89,8 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
             {
                 QueueLength = (int) queueLengthCounter.Observe(),
                 Load = Math.Max(0, (100 - idleTimeCounter.Observe()) / 100),
-                ReadBytesPerSecondBytes = (long) readBytesPerSecondCounter.Observe(),
-                WriteBytesPerSecondBytes = (long) writeBytesPerSecondCounter.Observe(),
+                ReadBytesPerSecond = (long) readBytesPerSecondCounter.Observe(),
+                WriteBytesPerSecond = (long) writeBytesPerSecondCounter.Observe(),
                 ReadLatency = TimeSpan.FromSeconds(readLatencyCounter.Observe()),
                 WriteLatency = TimeSpan.FromSeconds(writeLatencyCounter.Observe()),
                 ReadsPerSecond = (int) readsPerSecondCounter.Observe(),

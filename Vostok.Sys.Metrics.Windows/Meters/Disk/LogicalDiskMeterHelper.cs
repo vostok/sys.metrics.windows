@@ -11,9 +11,9 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
                 .WithCounter(Category.LogicalDisk, "Current Disk Queue Length",
                     (c, v) => c.Result.QueueLength = (int) v)
                 .WithCounter(Category.LogicalDisk, "Disk Read Bytes/sec",
-                    (c, v) => c.Result.ReadBytesPerSecondBytes = (long) v)
+                    (c, v) => c.Result.ReadBytesPerSecond = (long) v)
                 .WithCounter(Category.LogicalDisk, "Disk Write Bytes/sec",
-                    (c, v) => c.Result.WriteBytesPerSecondBytes = (long) v)
+                    (c, v) => c.Result.WriteBytesPerSecond = (long) v)
                 .WithCounter(Category.LogicalDisk, "Disk Reads/sec",
                     (c, v) => c.Result.ReadsPerSecond = (int) v)
                 .WithCounter(Category.LogicalDisk, "Disk Writes/sec",

@@ -20,9 +20,9 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
         {
             counter = counterFactory.Create<InterfaceUsageMetrics>()
                 .WithCounter("Network Interface", "Bytes Received/sec",
-                    (c, v) => c.Result.ReceivedPerSecondBytes = (long) v)
+                    (c, v) => c.Result.ReceivedBytesPerSecond = (long) v)
                 .WithCounter("Network Interface", "Bytes Sent/sec",
-                    (c, v) => c.Result.SentPerSecondBytes = (long) v)
+                    (c, v) => c.Result.SentBytesPerSecond = (long) v)
                 .WithCounter("Network Interface", "Current Bandwidth",
                     (c, v) => c.Result.BandwidthBytes = (long) (v/8))
                 .BuildWildcard("*", (context, s) => context.Result.Interface = s);
