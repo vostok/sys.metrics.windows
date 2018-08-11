@@ -5,6 +5,16 @@
         <TargetFramework>net471</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+      <Prefer32bit>true</Prefer32bit>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+      <Prefer32bit>true</Prefer32bit>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\Vostok.Sys.Metrics.Windows\Vostok.Sys.Metrics.Windows.csproj" />
     </ItemGroup>
