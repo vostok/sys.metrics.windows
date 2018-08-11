@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 using Vostok.Sys.Metrics.Windows.TestProcess;
@@ -97,9 +98,11 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
                 
                 testProcess0.Dispose();
                 
-                var cacheAfter = InstanceNameUtility.AllProcesses.ObtainInstanceNames();
-                cacheAfter[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
-                
+                new Action(() =>
+                {
+                    var cacheAfter = InstanceNameUtility.AllProcesses.ObtainInstanceNames();
+                    cacheAfter[testProcess1.Process.Id].Should().BeEquivalentTo("vostok.sys.metrics.windows.testprocess");
+                }).ShouldPassIn(5.Seconds(), 500.Milliseconds());
             }
         }
         
