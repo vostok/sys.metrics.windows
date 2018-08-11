@@ -4,8 +4,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct KernelMemoryInfo
     {
-        public long PagedPoolBytes;
-        public long NonpagedPoolBytes;
+        public long PagedPoolBytes { get; internal set; }
+        public long NonpagedPoolBytes { get; internal set; }
 
         public long TotalBytes => PagedPoolBytes + NonpagedPoolBytes;
         

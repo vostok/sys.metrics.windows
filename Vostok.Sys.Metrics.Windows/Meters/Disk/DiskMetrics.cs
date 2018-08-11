@@ -8,16 +8,16 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
         /// <summary>
         /// Current disk queue length
         /// </summary>
-        public int QueueLength;
-        public long ReadBytesPerSecondBytes;
-        public long WriteBytesPerSecondBytes;
-        public int ReadsPerSecond;
-        public int WritesPerSecond;
-        public TimeSpan ReadLatency;
-        public TimeSpan WriteLatency;
-        public double Load;
-        public string Drive;
-        public long FreeSpaceBytes;
+        public int QueueLength { get; internal set; }
+        public long ReadBytesPerSecondBytes { get; internal set; }
+        public long WriteBytesPerSecondBytes { get; internal set; }
+        public int ReadsPerSecond { get; internal set; }
+        public int WritesPerSecond { get; internal set; }
+        public TimeSpan ReadLatency { get; internal set; }
+        public TimeSpan WriteLatency { get; internal set; }
+        public double Load { get; internal set; }
+        public string Drive { get; internal set; }
+        public long FreeSpaceBytes { get; internal set; }
 
         public override string ToString()
         {   

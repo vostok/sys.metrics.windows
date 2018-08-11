@@ -4,8 +4,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct CommitMemoryInfo
     {
-        public long CommittedBytes;
-        public long LimitBytes;
+        public long CommittedBytes { get; internal set; }
+        public long LimitBytes { get; internal set; }
 
         public double UsageBytes => CommittedBytes / (double) LimitBytes;
         

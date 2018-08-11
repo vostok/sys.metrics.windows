@@ -4,8 +4,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct HostMemoryInfo
     {
-        public long TotalPhysicalMemoryBytes;
-        public long AvailablePhysicalMemoryBytes;
+        public long TotalPhysicalMemoryBytes { get; internal set; }
+        public long AvailablePhysicalMemoryBytes { get; internal set; }
 
         public override string ToString()
             =>

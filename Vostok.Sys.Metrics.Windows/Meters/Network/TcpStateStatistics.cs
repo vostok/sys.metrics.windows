@@ -8,19 +8,19 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
         public int Total => Closed + Listen + SynSent + SynRcvd + Established + FinWait1 + FinWait2 + CloseWait +
                             Closing + LastAck + TimeWait + DeleteTcb + Unknown;
         
-        public int Unknown;
-        public int Closed;
-        public int Listen;
-        public int SynSent;
-        public int SynRcvd;
-        public int Established;
-        public int FinWait1;
-        public int FinWait2;
-        public int CloseWait;
-        public int Closing;
-        public int LastAck;
-        public int TimeWait;
-        public int DeleteTcb;
+        public int Unknown { get; internal set; }
+        public int Closed { get; internal set; }
+        public int Listen { get; internal set; }
+        public int SynSent { get; internal set; }
+        public int SynRcvd { get; internal set; }
+        public int Established { get; internal set; }
+        public int FinWait1 { get; internal set; }
+        public int FinWait2 { get; internal set; }
+        public int CloseWait { get; internal set; }
+        public int Closing { get; internal set; }
+        public int LastAck { get; internal set; }
+        public int TimeWait { get; internal set; }
+        public int DeleteTcb { get; internal set; }
         
         public override string ToString()
             => $"Total: {Total}, Closed: {Closed}, Listen: {Listen}, SynSent: {SynSent}, SynRcvd: {SynRcvd}, Established: {Established}, FinWait1: {FinWait1}, FinWait2: {FinWait2}, "

@@ -4,8 +4,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {
     public struct StandbyCacheMemoryInfo
     {        
-        public long NormalPriorityBytes;
-        public long ReserveBytes;
+        public long NormalPriorityBytes { get; internal set; }
+        public long ReserveBytes { get; internal set; }
 
         public long TotalBytes => NormalPriorityBytes + ReserveBytes;
         

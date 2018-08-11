@@ -7,22 +7,22 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
         /// <summary>
         /// Interface name
         /// </summary>
-        public string Interface;
+        public string Interface { get; set; }
         
         /// <summary>
         /// Bytes received / second
         /// </summary>
-        public long ReceivedPerSecondBytes;
+        public long ReceivedPerSecondBytes { get; set; }
         
         /// <summary>
         /// Bytes sent / second
         /// </summary>
-        public long SentPerSecondBytes;
+        public long SentPerSecondBytes { get; set; }
 
         /// <summary>
         /// Interface bandwidth
         /// </summary>
-        public long BandwidthBytes;
+        public long BandwidthBytes { get; set; }
 
         public override string ToString()
             => $"{Interface} - In: {new DataSize(ReceivedPerSecondBytes)}/s, Out: {new DataSize(SentPerSecondBytes)}/s, Bandwidth: {new DataSize(BandwidthBytes)}/s ({new DataSize(BandwidthBytes).ToStringAsDecimalBits()}/s)";
