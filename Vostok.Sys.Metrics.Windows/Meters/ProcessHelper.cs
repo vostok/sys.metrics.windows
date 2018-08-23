@@ -29,11 +29,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters
             lock (sync)
             {
                 var result = new List<ProcessInfo>();
-                NtUtility.VisitProcesses(buffer, info =>
-                {
-                    Console.WriteLine(new string((char*) info->NamePtr) + ": " + info->NumberOfThreads);
-                    FillResult(result, info);
-                });
+                NtUtility.VisitProcesses(buffer, info => FillResult(result, info));
                 return result;
             }
         }
