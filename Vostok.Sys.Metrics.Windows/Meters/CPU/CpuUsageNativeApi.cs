@@ -9,7 +9,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.CPU
     {
         public static ulong GetSystemTime()
         {
-            if (Kernel32.GetSystemTimes(out var _, out var kernelTime, out var userTime))
+            if (Kernel32.GetSystemTimes(out _, out var kernelTime, out var userTime))
                 return kernelTime.ToULong() + userTime.ToULong();
 
             Win32ExceptionUtility.Throw();
@@ -29,7 +29,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.CPU
 
         public static ulong GetProcessTime(IntPtr hProcess)
         {
-            if (Kernel32.GetProcessTimes(hProcess, out var _, out var _, out var kernelTime, out var userTime))
+            if (Kernel32.GetProcessTimes(hProcess, out _, out _, out var kernelTime, out var userTime))
                 return kernelTime.ToULong() + userTime.ToULong();
 
             Win32ExceptionUtility.Throw();
