@@ -69,11 +69,14 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
         private double GetValue(PdhCounter counter, bool firstObservation)
         {
             var status = counter.GetFormattedValue(out var counterValue);
-            if (status == PdhStatus.PDH_INVALID_DATA)
+            switch (status)
             {
-                if (counterValue.CStatus == PdhStatus.PDH_CSTATUS_NO_INSTANCE)
+                case PdhStatus.PDH_INVALID_DATA when counterValue.CStatus == PdhStatus.PDH_CSTATUS_NO_INSTANCE:
                     throw new InvalidInstanceException(instanceName);
-                if (firstObservation)
+                case PdhStatus.PDH_INVALID_DATA when firstObservation:
+                case PdhStatus.PDH_CALC_NEGATIVE_VALUE:
+                case PdhStatus.PDH_CALC_NEGATIVE_TIMEBASE:
+                case PdhStatus.PDH_CALC_NEGATIVE_DENOMINATOR:
                     return 0;
             }
 
