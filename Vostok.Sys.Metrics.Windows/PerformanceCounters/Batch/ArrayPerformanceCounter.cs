@@ -10,17 +10,18 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
     internal class ArrayPerformanceCounter<T> : IWildCardPerformanceCounter<T> where T : new ()
     {
         private readonly string instanceNameWildcard;
-        private readonly Action<CounterContext<T>, string> setInstanceName;
+        private readonly Action<CounterContext<T>, string, int> setInstanceName;
         private readonly PdhCounterInfo<T>[] counters;
  
         private readonly Dictionary<string, CounterContext<T>> contexts = new Dictionary<string, CounterContext<T>>();
 
         private PdhQuery query;
         private readonly ResizeableBuffer resizeableBuffer = new ResizeableBuffer();
+        private readonly InstancesCounter instancesCounter = new InstancesCounter();
         private readonly List<Sample> samples = new List<Sample>();
         private readonly List<KeyValuePair<string, CounterContext<T>>> sortBuffer = new List<KeyValuePair<string, CounterContext<T>>>();
 
-        public ArrayPerformanceCounter(CounterInfo<T>[] counters, string instanceNameWildcard, Action<CounterContext<T>, string> setInstanceName)
+        public ArrayPerformanceCounter(CounterInfo<T>[] counters, string instanceNameWildcard, Action<CounterContext<T>, string, int> setInstanceName)
         {
             this.instanceNameWildcard = instanceNameWildcard;
             this.setInstanceName = setInstanceName;
@@ -42,6 +43,7 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
             {
                 ref var counter = ref counters[i];
                 ObtainSamples(counter.PdhCounter);
+                instancesCounter.Clear();
                 foreach (var sample in samples)
                 {
                     if (!contexts.TryGetValue(sample.Instance, out var ctx))
@@ -50,13 +52,12 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
                         
                         contexts[sample.Instance] = ctx;
                         ctx.Result = Factory.Create<T>();
-                        setInstanceName(ctx, sample.Instance);
+                        setInstanceName(ctx, sample.Instance, instancesCounter.GetAndIncrement(sample.Instance));
                     }
 
                     counter.Info.SetValue(ctx, sample.Value);
                 }
             }
-
 
             sortBuffer.Clear();
             foreach (var kvp in contexts)

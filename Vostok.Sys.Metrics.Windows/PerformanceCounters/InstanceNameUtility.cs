@@ -110,19 +110,6 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters
             return value.InstanceName;
         }
         
-        private class InstancesCounter
-        {
-            private readonly Dictionary<string, int> instanceIndexes = new Dictionary<string, int>();
-
-            public int GetAndIncrement(string name)
-            {
-                var value = instanceIndexes.TryGetValue(name, out var v) ? v : 0;
-                instanceIndexes[name] = value + 1;
-                return value;
-            }
-
-            public void Clear() => instanceIndexes.Clear();
-        }
 
         private struct CachedInstanceName
         {

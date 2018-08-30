@@ -16,7 +16,10 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
         public IPerformanceCounter<T> Create<T>(CounterInfo<T>[] counters) where T : new()
             => new BatchPerformanceCounter<T>(counters);
 
-        public IPerformanceCounter<T[]> CreateWildcard<T>(string instanceNameWildcard, CounterInfo<T>[] counters, Action<CounterContext<T>, string> setInstanceName) where T : new()
+        public IPerformanceCounter<T[]> CreateWildcard<T>(string instanceNameWildcard, CounterInfo<T>[] counters, Action<CounterContext<T>, string, int> setInstanceName) where T : new()
             => new ArrayPerformanceCounter<T>(counters, instanceNameWildcard, setInstanceName);
+        
+        public IPerformanceCounter<T[]> CreateWildcard<T>(string instanceNameWildcard, CounterInfo<T>[] counters, Action<CounterContext<T>, string> setInstanceName) where T : new()
+            => new ArrayPerformanceCounter<T>(counters, instanceNameWildcard, (x, y, _) => setInstanceName(x, y));
     }
 }

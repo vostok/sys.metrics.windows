@@ -10,5 +10,6 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
         IPerformanceCounter<T> Build(string instanceName);
         IPerformanceCounter<T> Build(Func<string> instanceNameProvider);
         IPerformanceCounter<T[]> BuildWildcard(string instanceNameWildcard, Action<CounterContext<T>, string> setInstanceName);
+        IPerformanceCounter<T[]> BuildWildcard(string instanceNameWildcard, Action<CounterContext<T>, string, int> setInstanceName);
     }
 }

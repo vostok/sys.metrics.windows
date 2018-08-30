@@ -40,6 +40,9 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
             => performanceCounterFactory.Create(instanceName, GetCounters());
 
         public IPerformanceCounter<T[]> BuildWildcard(string instanceNameWildcard, Action<CounterContext<T>, string> setInstanceName)
+            => performanceCounterFactory.CreateWildcard(instanceNameWildcard, GetCounters(), (x, y, _) => setInstanceName(x, y));
+
+        public IPerformanceCounter<T[]> BuildWildcard(string instanceNameWildcard, Action<CounterContext<T>, string, int> setInstanceName)
             => performanceCounterFactory.CreateWildcard(instanceNameWildcard, GetCounters(), setInstanceName);
 
         private bool HasCounter => counter.Name.CounterName != null;
