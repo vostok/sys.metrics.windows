@@ -130,6 +130,6 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
         }
 
         public void Dispose()
-            => query.Dispose();
+            => query?.Dispose();
     }
 }
