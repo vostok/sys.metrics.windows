@@ -39,7 +39,8 @@ namespace Vostok.Sys.Metrics.Windows.Meters
             var info = new ProcessInfo
             {
                 Id = (int) proc->UniqueProcessId,
-                Name = new string((char*) proc->NamePtr)
+                Name = new string((char*) proc->NamePtr),
+                ParentId = (int) proc->InheritedFromUniqueProcessId
             };
             result.Add(info);
         }
