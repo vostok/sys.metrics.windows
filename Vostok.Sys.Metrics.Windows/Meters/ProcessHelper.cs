@@ -34,7 +34,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters
             }
         }
 
-        private unsafe void FillResult(List<ProcessInfo> result, SystemProcessInformation* proc)
+        private static unsafe void FillResult(List<ProcessInfo> result, SystemProcessInformation* proc)
         {
             var info = new ProcessInfo
             {
