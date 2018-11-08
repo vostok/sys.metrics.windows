@@ -102,6 +102,9 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch
             while (true)
             {
                 var size = counter.EstimateFormattedCounterArraySize();
+                if (size == 0)
+                    return;
+                    
                 var buffer = resizeableBuffer.Get(ref size);
                 
                 fixed (byte* bytePtr = buffer)

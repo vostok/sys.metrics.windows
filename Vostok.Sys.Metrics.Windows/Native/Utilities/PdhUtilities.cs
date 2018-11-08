@@ -35,12 +35,6 @@ namespace Vostok.Sys.Metrics.Windows.Native.Utilities
                 FailWithError(status, method);
         }
         
-        public static void EnsureStatus(this PdhStatus status, PdhStatus successfulStatus, string method)
-        {
-            if (status != successfulStatus)
-                FailWithError(status, method);
-        }
-
         public static unsafe PdhStatus GetRawCounterArray(this PdhCounter counter, ref int bufferSize,
             out int itemCount, PDH_RAW_COUNTER_ITEM* buffer) =>
             Pdh.PdhGetRawCounterArray(counter, ref bufferSize, out itemCount, buffer);
@@ -52,14 +46,18 @@ namespace Vostok.Sys.Metrics.Windows.Native.Utilities
         public static unsafe int EstimateRawCounterArraySize(this PdhCounter counter)
         {
             var size = 0;
-            Pdh.PdhGetRawCounterArray(counter, ref size, out _, null).EnsureStatus(PdhStatus.PDH_MORE_DATA, nameof(Pdh.PdhGetRawCounterArray));
+            var status = Pdh.PdhGetRawCounterArray(counter, ref size, out _, null);
+            if (status != PdhStatus.PDH_CSTATUS_VALID_DATA && status != PdhStatus.PDH_MORE_DATA)
+                FailWithError(PdhStatus.PDH_MORE_DATA, nameof(Pdh.PdhGetRawCounterArray));
             return size;
         }
 
         public static unsafe int EstimateFormattedCounterArraySize(this PdhCounter counter)
         {
             var size = 0;
-            Pdh.PdhGetFormattedCounterArray(counter, DefaultFmt, ref size, out _, null).EnsureStatus(PdhStatus.PDH_MORE_DATA, nameof(Pdh.PdhGetRawCounterArray));
+            var status = Pdh.PdhGetFormattedCounterArray(counter, DefaultFmt, ref size, out _, null);
+            if (status != PdhStatus.PDH_CSTATUS_VALID_DATA && status != PdhStatus.PDH_MORE_DATA)
+                FailWithError(PdhStatus.PDH_MORE_DATA, nameof(Pdh.PdhGetFormattedCounterArray));
             return size;
         }
 
