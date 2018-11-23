@@ -9,6 +9,7 @@ using Vostok.Sys.Metrics.Windows.TestProcess;
 
 namespace Vostok.Sys.Metrics.Windows.Tests.Integration
 {
+    [Explicit]
     public class ManagedMemoryMeter_Tests
     {
         [TestCase(10, 1)]
