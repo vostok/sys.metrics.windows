@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.Memory;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations

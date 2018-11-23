@@ -1,7 +1,5 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.Helpers;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
+using Vostok.Sys.Metrics.PerfCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.Memory
 {

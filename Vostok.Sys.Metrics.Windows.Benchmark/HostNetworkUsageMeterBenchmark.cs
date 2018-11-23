@@ -1,7 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Vostok.Sys.Metrics.Windows.Benchmark.Implementations;
 using Vostok.Sys.Metrics.Windows.Meters.Network;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark
 {

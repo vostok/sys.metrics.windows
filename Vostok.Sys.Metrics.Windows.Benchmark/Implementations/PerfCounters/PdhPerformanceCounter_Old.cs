@@ -1,8 +1,8 @@
 ﻿using System;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Native.Libraries;
 using Vostok.Sys.Metrics.Windows.Native.Structures;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters
 {
@@ -40,7 +40,7 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters
                     if (status == PdhStatus.PDH_INVALID_DATA)
                     {
                         if (val.CStatus == PdhStatus.PDH_CSTATUS_NO_INSTANCE && instanceName != null)
-                            throw new InvalidInstanceException(instanceName);
+                            throw new InvalidOperationException(instanceName);
                         if (i == 0)
                             continue;
                     }
@@ -63,7 +63,7 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters
         {
             var status = pdhQuery.CollectQueryData();
             if (status == PdhStatus.PDH_NO_DATA)
-                throw new InvalidInstanceException(instanceName);
+                throw new InvalidOperationException(instanceName);
             status.EnsureSuccess(nameof(PdhUtilities.CollectQueryData));
         }
         

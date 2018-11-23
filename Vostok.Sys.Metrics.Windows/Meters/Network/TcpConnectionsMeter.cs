@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.NetworkInformation;
 using Vostok.Sys.Metrics.Windows.Native.Structures;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
 

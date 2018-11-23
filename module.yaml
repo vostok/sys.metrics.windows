@@ -10,6 +10,7 @@ notests *default:
 
   deps:
     - vostok.devtools
+    - vostok.sys.metrics.perfcounters
 
 full-build > notests:
   build:

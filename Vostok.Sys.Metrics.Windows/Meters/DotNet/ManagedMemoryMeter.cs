@@ -1,8 +1,8 @@
 using System;
+using Vostok.Sys.Metrics.PerfCounters;
+using Vostok.Sys.Metrics.PerfCounters.InstanceNames;
 using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
 {
@@ -86,19 +86,19 @@ namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
         {
             var builder = counterFactory
                 .Create<ManagedMemoryInfo>() // .Create<T>
-                .WithCounter(Category.ClrMemory, "% Time in GC", (c, x) => c.Result.GC.TimeInGCPercent = x)
-                .WithCounter(Category.ClrMemory, "Gen 0 heap size", (c, x) => c.Result.Heap.Gen0SizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "Gen 1 heap size", (c, x) => c.Result.Heap.Gen1SizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "Gen 2 heap size", (c, x) => c.Result.Heap.Gen2SizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "Large Object Heap size", (c, x) => c.Result.Heap.LargeObjectHeapSizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "# Bytes in all Heaps", (c, x) => c.Result.Heap.TotalSizeBytes = (long) x)
-                .WithCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocatedBytesPerSecond = (long) x);
+                .AddCounter(Category.ClrMemory, "% Time in GC", (c, x) => c.Result.GC.TimeInGCPercent = x)
+                .AddCounter(Category.ClrMemory, "Gen 0 heap size", (c, x) => c.Result.Heap.Gen0SizeBytes = (long) x)
+                .AddCounter(Category.ClrMemory, "Gen 1 heap size", (c, x) => c.Result.Heap.Gen1SizeBytes = (long) x)
+                .AddCounter(Category.ClrMemory, "Gen 2 heap size", (c, x) => c.Result.Heap.Gen2SizeBytes = (long) x)
+                .AddCounter(Category.ClrMemory, "Large Object Heap size", (c, x) => c.Result.Heap.LargeObjectHeapSizeBytes = (long) x)
+                .AddCounter(Category.ClrMemory, "# Bytes in all Heaps", (c, x) => c.Result.Heap.TotalSizeBytes = (long) x)
+                .AddCounter(Category.ClrMemory, "Allocated Bytes/sec", (c, x) => c.Result.Heap.AllocatedBytesPerSecond = (long) x);
             
             if (pid != ProcessUtility.CurrentProcessId)
                 builder = builder
-                    .WithCounter(Category.ClrMemory, "# Gen 0 Collections", (c, x) => c.Result.GC.Gen0CollectionsSinceStart = (long) x)
-                    .WithCounter(Category.ClrMemory, "# Gen 1 Collections", (c, x) => c.Result.GC.Gen1CollectionsSinceStart = (long) x)
-                    .WithCounter(Category.ClrMemory, "# Gen 2 Collections", (c, x) => c.Result.GC.Gen2CollectionsSinceStart = (long) x);
+                    .AddCounter(Category.ClrMemory, "# Gen 0 Collections", (c, x) => c.Result.GC.Gen0CollectionsSinceStart = (long) x)
+                    .AddCounter(Category.ClrMemory, "# Gen 1 Collections", (c, x) => c.Result.GC.Gen1CollectionsSinceStart = (long) x)
+                    .AddCounter(Category.ClrMemory, "# Gen 2 Collections", (c, x) => c.Result.GC.Gen2CollectionsSinceStart = (long) x);
             
             return builder.Build(InstanceNameProviders.DotNet.ForPid(pid));
         }

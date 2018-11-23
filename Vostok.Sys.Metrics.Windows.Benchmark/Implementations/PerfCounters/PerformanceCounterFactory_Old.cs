@@ -1,5 +1,5 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
+using Vostok.Sys.Metrics.PerfCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters
 {

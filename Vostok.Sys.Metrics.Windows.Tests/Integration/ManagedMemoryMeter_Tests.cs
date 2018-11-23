@@ -5,7 +5,6 @@ using FluentAssertions.Extensions;
 using NUnit.Framework;
 using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.DotNet;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 using Vostok.Sys.Metrics.Windows.TestProcess;
 
 namespace Vostok.Sys.Metrics.Windows.Tests.Integration
@@ -146,8 +145,8 @@ namespace Vostok.Sys.Metrics.Windows.Tests.Integration
             }
         }
 
-        [SetUp]
-        public void SetUp()
-            => ProcessInstanceNamesCache.Instance.EvictCaches();
+        // [SetUp]
+        // public void SetUp()
+        //     => ProcessInstanceNamesCache.Instance.EvictCaches();
     }
 }

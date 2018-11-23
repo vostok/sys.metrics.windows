@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Vostok.Sys.Metrics.Windows.Helpers;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Meters.Network;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
 {
@@ -40,7 +38,7 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
                     interfaceMetrics.Add(metrics);
 
                 }
-                catch(InvalidInstanceException){ }
+                catch(InvalidOperationException){ }
             }
 
             toRemove.Clear();
@@ -68,11 +66,11 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
         {
             return counterFactory
                 .Create<InterfaceUsageMetrics>()
-                .WithCounter("Network Interface", "Bytes Received/sec",
+                .AddCounter("Network Interface", "Bytes Received/sec",
                     (c, v) => c.Result.ReceivedBytesPerSecond = (long) v)
-                .WithCounter("Network Interface", "Bytes Sent/sec",
+                .AddCounter("Network Interface", "Bytes Sent/sec",
                     (c, v) => c.Result.SentBytesPerSecond = (long) v)
-                .WithCounter("Network Interface", "Current Bandwidth",
+                .AddCounter("Network Interface", "Current Bandwidth",
                     (c, v) => c.Result.SentBytesPerSecond = (long) v)
                 .Build(networkInterface);
         }

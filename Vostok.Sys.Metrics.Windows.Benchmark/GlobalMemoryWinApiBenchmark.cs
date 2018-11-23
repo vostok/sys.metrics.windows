@@ -1,9 +1,8 @@
-﻿using System;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Meters.Memory;
 using Vostok.Sys.Metrics.Windows.Native.Libraries;
 using Vostok.Sys.Metrics.Windows.Native.Structures;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark
 {

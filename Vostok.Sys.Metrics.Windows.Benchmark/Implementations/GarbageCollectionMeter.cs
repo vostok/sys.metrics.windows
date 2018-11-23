@@ -1,8 +1,6 @@
 using System;
-using System.Diagnostics;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Meters.DotNet;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
 {
@@ -34,10 +32,10 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
         {
             counter = counterFactory
                 .Create<GarbageCollectionInfo>() // .Create<T>
-                .WithCounter(".NET CLR Memory", "# Gen 0 Collections", (c, x) => c.Result.Gen0CollectionsSinceStart = (long) x)
-                .WithCounter(".NET CLR Memory", "# Gen 1 Collections", (c, x) => c.Result.Gen1CollectionsSinceStart = (long) x)
-                .WithCounter(".NET CLR Memory", "# Gen 2 Collections", (c, x) => c.Result.Gen2CollectionsSinceStart = (long) x)
-                .WithCounter(".NET CLR Memory", "% Time in GC", (c, x) => c.Result.TimeInGCPercent = x)
+                .AddCounter(".NET CLR Memory", "# Gen 0 Collections", (c, x) => c.Result.Gen0CollectionsSinceStart = (long) x)
+                .AddCounter(".NET CLR Memory", "# Gen 1 Collections", (c, x) => c.Result.Gen1CollectionsSinceStart = (long) x)
+                .AddCounter(".NET CLR Memory", "# Gen 2 Collections", (c, x) => c.Result.Gen2CollectionsSinceStart = (long) x)
+                .AddCounter(".NET CLR Memory", "% Time in GC", (c, x) => c.Result.TimeInGCPercent = x)
                 .Build(instanceNameProvider);
         }
 

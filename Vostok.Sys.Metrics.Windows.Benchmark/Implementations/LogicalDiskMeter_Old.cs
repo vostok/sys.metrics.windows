@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.Disk;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
 {

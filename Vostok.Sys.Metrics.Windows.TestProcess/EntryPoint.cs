@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Vostok.Sys.Metrics.Windows.Helpers;
 
 namespace Vostok.Sys.Metrics.Windows.TestProcess
 {
@@ -85,19 +84,17 @@ namespace Vostok.Sys.Metrics.Windows.TestProcess
         private static void EatMem(string[] args)
         {
             var bytes = long.Parse(args[0]);
-            var size = DataSize.FromBytes(bytes);
-            eatMemoryTask = new EatMemoryTask(size);
+            eatMemoryTask = new EatMemoryTask(bytes);
             eatMemoryTask.Start();
-            Console.WriteLine($"Have eaten {size} memory");
+            Console.WriteLine($"Have eaten {bytes}B memory");
         }
 
         private static void EatPrivateMem(string[] args)
         {
             var bytes = long.Parse(args[0]);
-            var size = DataSize.FromBytes(bytes);
-            eatPrivateMemoryTask = new EatPrivateMemoryTask(size);
+            eatPrivateMemoryTask = new EatPrivateMemoryTask(bytes);
             eatPrivateMemoryTask.Start();
-            Console.WriteLine($"Have eaten {size} memory");
+            Console.WriteLine($"Have eaten {bytes}B memory");
         }
 
         private static void EatCpu(string[] args)

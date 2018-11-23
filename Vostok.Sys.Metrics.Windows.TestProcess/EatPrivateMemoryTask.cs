@@ -1,14 +1,13 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.Helpers;
 
 namespace Vostok.Sys.Metrics.Windows.TestProcess
 {
     internal class EatPrivateMemoryTask
     {
-        private readonly DataSize size;
+        private readonly long size;
         private byte[] eaten;
 
-        public EatPrivateMemoryTask(DataSize size)
+        public EatPrivateMemoryTask(long size)
         {
             this.size = size;
         }
@@ -17,7 +16,7 @@ namespace Vostok.Sys.Metrics.Windows.TestProcess
         {
             GC.Collect(2, GCCollectionMode.Forced, true, true);
 
-            eaten = new byte[size.Bytes];
+            eaten = new byte[size];
         }
 
         public void Stop()

@@ -1,12 +1,14 @@
 ﻿using System;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Helpers;
 
-namespace Vostok.Sys.Metrics.Windows.PerformanceCounters
+namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters
 {
-    internal class DynamicPerformanceCounter<T> : IPerformanceCounter<T> where T : new ()
+    internal class DynamicPerformanceCounter<T> : IPerformanceCounter<T>
+        where T : new()
     {
-        private readonly object sync = new object();
         private const int RetryAttempts = 3;
+        private readonly object sync = new object();
 
         private readonly Func<string, IPerformanceCounter<T>> counterFactory;
         private readonly Func<string> instanceNameProvider;
@@ -34,18 +36,18 @@ namespace Vostok.Sys.Metrics.Windows.PerformanceCounters
                 {
                     return ObserveInternal();
                 }
-                catch (InvalidInstanceException)
+                catch (InvalidOperationException)
                 {
                 }
             }
-            
+
             return Factory.Create<T>();
         }
 
         private T ObserveInternal()
         {
             var counterInstance = ObtainCounter();
-            
+
             return counterInstance != null
                 ? counterInstance.Observe()
                 : Factory.Create<T>();

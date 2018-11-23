@@ -1,7 +1,7 @@
 ﻿using System;
+using Vostok.Sys.Metrics.PerfCounters;
+using Vostok.Sys.Metrics.PerfCounters.InstanceNames;
 using Vostok.Sys.Metrics.Windows.Helpers;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.DotNet
 {

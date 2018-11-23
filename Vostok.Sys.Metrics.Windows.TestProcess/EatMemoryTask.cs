@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Vostok.Sys.Metrics.Windows.Helpers;
 
 namespace Vostok.Sys.Metrics.Windows.TestProcess
 {
     internal class EatMemoryTask
     {
-        private readonly DataSize size;
-        private readonly DataSize bucketSize = DataSize.FromKilobytes(2);
+        private readonly long size;
+        private readonly long bucketSize = 2 * 1024;
         private List<byte[]> eaten;
 
-        public EatMemoryTask(DataSize size)
+        public EatMemoryTask(long size)
         {
             this.size = size;
         }
@@ -23,7 +22,7 @@ namespace Vostok.Sys.Metrics.Windows.TestProcess
             var iterations = (int) (size / bucketSize) + 1;
             for (var i = 0; i < iterations; i++)
             {
-                eaten.Add(new byte[bucketSize.Bytes]);
+                eaten.Add(new byte[bucketSize]);
             }
         }
 

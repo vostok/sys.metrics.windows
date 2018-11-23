@@ -18,8 +18,4 @@
       <Prefer32bit>true</Prefer32bit>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Vostok.Sys.Metrics.Windows\Vostok.Sys.Metrics.Windows.csproj" />
-    </ItemGroup>
-
 </Project>

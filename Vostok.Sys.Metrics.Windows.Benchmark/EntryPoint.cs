@@ -6,7 +6,8 @@ namespace Vostok.Sys.Metrics.Windows.Benchmark
     {
         private static void Main(string[] args)
         {
-            BenchmarkRunner.Run<InstanceNameUtilityBenchmark>();
+            
+            BenchmarkRunner.Run<LogicalDiskMeterBechmark>();
         }
     }
 }

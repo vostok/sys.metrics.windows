@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using Vostok.Sys.Metrics.PerfCounters;
+using Vostok.Sys.Metrics.PerfCounters.InstanceNames;
 using Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Meters.DotNet;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark.Implementations
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Meters.Memory;
 using Vostok.Sys.Metrics.Windows.Native.Constants;
 using Vostok.Sys.Metrics.Windows.Native.Libraries;

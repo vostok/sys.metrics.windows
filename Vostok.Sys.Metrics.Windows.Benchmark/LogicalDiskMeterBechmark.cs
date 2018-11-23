@@ -3,7 +3,6 @@ using BenchmarkDotNet.Attributes;
 using Vostok.Sys.Metrics.Windows.Benchmark.Implementations;
 using Vostok.Sys.Metrics.Windows.Benchmark.Implementations.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Meters.Disk;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Benchmark
 {

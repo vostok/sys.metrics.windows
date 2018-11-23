@@ -27,4 +27,10 @@
       <PackageReference Include="BenchmarkDotNet" Version="0.11.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Vostok.Sys.Metrics.PerfCounters">
+        <HintPath>..\..\vostok.sys.metrics.perfcounters\Vostok.Sys.Metrics.PerfCounters\bin\Release\netstandard2.0\Vostok.Sys.Metrics.PerfCounters.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
-using Vostok.Sys.Metrics.Windows.Helpers;
 
 namespace Vostok.Sys.Metrics.Windows.TestProcess
 {

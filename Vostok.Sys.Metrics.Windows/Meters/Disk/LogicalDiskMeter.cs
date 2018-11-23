@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
+using Vostok.Sys.Metrics.PerfCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.Disk
 {

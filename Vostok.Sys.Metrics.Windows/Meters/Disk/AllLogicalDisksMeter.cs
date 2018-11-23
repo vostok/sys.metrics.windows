@@ -1,7 +1,5 @@
 ﻿using System;
-using Vostok.Sys.Metrics.Windows.Helpers;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
+using Vostok.Sys.Metrics.PerfCounters;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.Disk
 {
@@ -14,7 +12,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
     /// </summary>
     public class AllLogicalDisksMeter : IDisposable
     {
-        private readonly IPerformanceCounter<DiskMetrics[]> counter;
+        private readonly IPerformanceCounter<Observation<DiskMetrics>[]> counter;
 
         public AllLogicalDisksMeter()
             : this(PerformanceCounterFactory.Default)
@@ -24,7 +22,7 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
         {
             counter = LogicalDiskMeterHelper
                 .CreateCounters(counterFactory)
-                .BuildWildcard("*:", (c, s) => c.Result.Drive = s);
+                .BuildForMultipleInstances("*:");
         }
 
         public DisksMetrics GetDiskMetrics()
@@ -34,7 +32,18 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Disk
             return new DisksMetrics(metrics);
         }
 
-        private DiskMetrics[] GetDiskMetricsInternal() => counter.Observe();
+        private DiskMetrics[] GetDiskMetricsInternal()
+        {
+            var observations = counter.Observe();
+            var data = new DiskMetrics[observations.Length];
+            for (var i = 0; i < observations.Length; i++)
+            {
+                data[i] = observations[i].Value;
+                data[i].Drive = observations[i].Instance;
+            }
+
+            return data;
+        }
 
         public void Dispose() => counter.Dispose();
     }

@@ -1,42 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  
   <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
   <Import Project="..\..\vostok.devtools\git-commit-to-assembly-title\Vostok.Tools.GitCommit2AssemblyTitle.props" />
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
-
   <PropertyGroup>
     <VersionPrefix>0.0.1</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
   </PropertyGroup>
-
   <PropertyGroup>
     <PackageReleaseNotes>TODO</PackageReleaseNotes>
   </PropertyGroup>
-
   <PropertyGroup>
     <Title>Vostok system metrics library for Windows</Title>
     <Description>Provides system metrics on Windows platform</Description>
   </PropertyGroup>
-
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/vostok/system.metrics.windows</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/system.metrics.windows/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>vostok vostok.system</PackageTags>
     <RepositoryUrl>https://github.com/vostok/system.metrics.windows</RepositoryUrl>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  
+  <ItemGroup>
+    <Reference Include="Vostok.Sys.Metrics.PerfCounters">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\vostok.sys.metrics.perfcounters\Vostok.Sys.Metrics.PerfCounters\bin\Release\netstandard2.0\Vostok.Sys.Metrics.PerfCounters.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

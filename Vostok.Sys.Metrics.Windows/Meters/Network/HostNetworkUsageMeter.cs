@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Linq;
-using Vostok.Sys.Metrics.Windows.Helpers;
+using Vostok.Sys.Metrics.PerfCounters;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters;
-using Vostok.Sys.Metrics.Windows.PerformanceCounters.Batch;
 
 namespace Vostok.Sys.Metrics.Windows.Meters.Network
 {
     public class HostNetworkUsageMeter : IDisposable
     {
-        private readonly IPerformanceCounter<InterfaceUsageMetrics[]> counter;
+        private readonly IPerformanceCounter<Observation<InterfaceUsageMetrics>[]> counter;
 
         public HostNetworkUsageMeter()
             : this(PerformanceCounterFactory.Default)
@@ -19,13 +17,13 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
         private HostNetworkUsageMeter(IPerformanceCounterFactory counterFactory)
         {
             counter = counterFactory.Create<InterfaceUsageMetrics>()
-                .WithCounter("Network Interface", "Bytes Received/sec",
+                .AddCounter("Network Interface", "Bytes Received/sec",
                     (c, v) => c.Result.ReceivedBytesPerSecond = (long) v)
-                .WithCounter("Network Interface", "Bytes Sent/sec",
+                .AddCounter("Network Interface", "Bytes Sent/sec",
                     (c, v) => c.Result.SentBytesPerSecond = (long) v)
-                .WithCounter("Network Interface", "Current Bandwidth",
+                .AddCounter("Network Interface", "Current Bandwidth",
                     (c, v) => c.Result.BandwidthBytes = (long) (v/8))
-                .BuildWildcard("*", (context, s) => context.Result.Interface = s);
+                .BuildForMultipleInstances("*");
         }
 
         public NetworkUsageMetrics GetNetworkMetrics()
@@ -35,7 +33,15 @@ namespace Vostok.Sys.Metrics.Windows.Meters.Network
             return new NetworkUsageMetrics(
                 counter
                     .Observe()
-                    .Where(x => upInterfaces.Contains(ActiveNetworkInterfaceCache.GetAdapterIdentity(x.Interface))).ToArray());
+                    .Where(x => upInterfaces.Contains(ActiveNetworkInterfaceCache.GetAdapterIdentity(x.Instance)))
+                    .Select(
+                        x =>
+                        {
+                            var val = x.Value;
+                            val.Interface = x.Instance;
+                            return val;
+                        })
+                    .ToArray());
         }
 
         public void Dispose()

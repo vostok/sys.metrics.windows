@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Vostok.Sys.Metrics.Windows.Helpers;
 using Vostok.Sys.Metrics.Windows.Native.Libraries;
 using Vostok.Sys.Metrics.Windows.Native.Structures;
 using Vostok.Sys.Metrics.Windows.Native.Utilities;
