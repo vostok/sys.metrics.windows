@@ -20,7 +20,7 @@
   <PropertyGroup>
     <PackageProjectUrl>https://github.com/vostok/system.metrics.windows</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/vostok/system.metrics.windows/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>vostok vostok.system</PackageTags>
+    <PackageTags>vostok vostok.sys.metrics</PackageTags>
     <RepositoryUrl>https://github.com/vostok/system.metrics.windows</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
